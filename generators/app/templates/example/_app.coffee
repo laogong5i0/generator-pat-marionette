@@ -19,11 +19,11 @@ define ["marionette"], (Marionette) ->
       console.log "Marionette Application Started"
       if Backbone.history
         Backbone.history.start()
-        if App.getCurrentRoute() is ""
-          App.navigate "main"
-          App.trigger "landing:home"
+        # if App.getCurrentRoute() is ""
+        #   App.navigate "main"
+        #   App.trigger "landing:home"
 
-        if App.getCurrentRoute() is "main"
-          App.trigger "landing:home"
+        # if App.getCurrentRoute() is "main"
+        #   App.trigger "landing:home"
 
   App

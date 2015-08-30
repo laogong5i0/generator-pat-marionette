@@ -2,6 +2,7 @@ define ["js/app"], (App) ->
   App.module "SubApp", (SubApp, App, Backbone, Marionette, $, _) ->
     App.Router = Marionette.AppRouter.extend(
       appRoutes:
+        '': 'sayHello'
         main:"sayHello"
     )
     API =
