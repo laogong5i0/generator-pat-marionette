@@ -20,6 +20,8 @@
     "backbone.localstorage": "~1.1.7",
     "json2": "*"<% if (bootstrap) { %>
     ,"bootstrap": "~3.0.3"<% } %>
+    <% if (ratchet) { %>
+    ,"ratchet": "~2.0.2"<% } %>
     <% if (foundation) { %>
     ,"foundation": "zurb/bower-foundation"<% } %>
   },

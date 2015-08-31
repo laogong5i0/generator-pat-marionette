@@ -140,6 +140,14 @@ module.exports = function (grunt) {
                     src: ['<%%= config.app %>/assets/require_main_built.js'],
                     dest: '<%%= config.dist %>/js/require_main_built.js'
                 }]
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= config.app %>/<%= bowerDirectory %>/ratchet/fonts',
+                    src: ['*.{eot, svg, ttf, woff}'],
+                    dest: '<%%= config.app %>/assets/fonts'
+                }]
             }
         },
         cssmin: {
@@ -148,19 +156,22 @@ module.exports = function (grunt) {
                     banner: '/* css for <%= appName %> v0.0.0 */'
                 },
                 files: {<% if (bootstrap) { %>
-                    './<%%= config.app %>/assets/css/app.combined.css': ['./<%%= config.app %>/assets/bower_components/bootstrap/dist/css/bootstrap.css', './<%%= config.app %>/assets/css/app.css']
+                    './<%%= config.app %>/assets/css/app.combined.css': ['./<%%= config.app %>/<%= bowerDirectory %>/bootstrap/dist/css/bootstrap.css', './<%%= config.app %>/assets/css/app.css']
+                <% } else if (ratchet) { %>
+                    './<%%= config.app %>/assets/css/app.combined.css': ['./<%%= config.app %>/<%= bowerDirectory %>/ratchet/dist/css/ratchet.css', './<%%= config.app %>/assets/css/app.css'],
                 <% } else if (foundation) { %>
-                    './<%%= config.app %>/assets/css/app.combined.css': ['./<%%= config.app %>/assets/bower_components/foundation/css/foundation.css', './<%%= config.app %>/assets/css/app.css']
-                <% } else if (!foundation && !bootstrap) { %>
+                    './<%%= config.app %>/assets/css/app.combined.css': ['./<%%= config.app %>/<%= bowerDirectory %>/foundation/css/foundation.css', './<%%= config.app %>/assets/css/app.css']
+                <% } else if (!foundation && !bootstrap && !ratchet ) { %>
                     './<%%= config.app %>/assets/css/app.css': ['./<%%= config.app %>/assets/css/app.css']
-                <% } %>}
-                },
-                minify: {
-                    cwd: './',<% if (!foundation && !bootstrap) { %>
-                    src: '<%%= config.app %>/assets/css/app.css',<% } else { %>
-                    src: '<%%= config.app %>/assets/css/app.combined.css',<% } %>
-                    dest: '<%%= config.dist %>/css/app.min.css'
+                <% } %>
                 }
+            },
+            minify: {
+                cwd: './',<% if (!foundation && !bootstrap) { %>
+                src: '<%%= config.app %>/assets/css/app.css',<% } else { %>
+                src: '<%%= config.app %>/assets/css/app.combined.css',<% } %>
+                dest: '<%%= config.dist %>/css/app.min.css'
+            }
         },
         shell: {
             'mocha-phantomjs': {
@@ -210,7 +221,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-open');
     // grunt.registerTask('default', ['dev', 'express:dev', 'connect:test', 
         // 'shell:mocha-phantomjs', 'open:dev', 'open:testrunner', 'watch']);
-    grunt.registerTask('default', ['dev', 'express:dev', 
+    grunt.registerTask('default', ['dev', 'copy:fonts', 'express:dev', 
         'shell:mocha-phantomjs',
         'open:dev', 'watch']);
         // 'open:dev', 'open:testrunner', 'watch']);

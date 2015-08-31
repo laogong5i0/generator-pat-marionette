@@ -32,7 +32,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type: 'string', 
       name: 'cssFramework',
-      message: 'Include a CSS framework? twitter bootstrap(B), foundation(F), I don\'t want to include a CSS framework(N)?',
+      message: 'Include a CSS framework? twitter bootstrap(B), foundation(F), ratchet(R), I don\'t want to include a CSS framework(N)?',
         default: 'B'
     },{
       type: 'string',
@@ -43,11 +43,14 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       this.props = props;
+      this.props.bootstrap = false;
+      this.props.foundation = false;
+      this.props.ratchet = false;
       if(this.props.cssFramework.toUpperCase() === 'B'){
         this.props.bootstrap = true;
-        this.props.foundation = false;
+      }if(this.props.cssFramework.toUpperCase()==="R"){
+        this.props.ratchet = true;
       }else{
-        this.props.bootstrap = false;
         this.props.foundation = true;
       }
       this.props.empty = false;
