@@ -5,6 +5,47 @@
 
 ## Getting Started
 
+1. 全局安装 yeoman、grunt-cli、bower
+
+```bash
+npm install -g yo
+npm install -g grunt-cli
+npm install -g bower
+```
+2. 由于当前generator没有注册到gurnt上去，所以你要先把源文件复制到你自己的电脑上。然后cd到generator-pat-marionette里
+如generator-pat-marionette放在d:www/generator-pat-marionette
+
+```bash
+cd www/generator-pat-marionette
+```
+然后使用npm link将pat-marionette连接成全局模块。
+
+```bash
+npm link
+```
+
+完成安装后可以使用yo查看当前所安装generator
+
+```bash
+yo
+```
+
+3. 使用yo命令创建你的第一个工程
+
+```bash
+yo pat-marionette
+```
+按提示输入Y或者N即可
+
+4. 使用yo命令创建sub app
+
+```bash
+yo pat-marionette:subapp [[subapp name]] [[module name]]
+```
+
+
+--------------------------------------------------------------------------------
+
 ### What is Yeoman?
 
 Trick question. It's not a thing. It's this guy:
