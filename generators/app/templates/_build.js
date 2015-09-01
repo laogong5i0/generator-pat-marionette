@@ -1,5 +1,5 @@
 ({
-  baseUrl: ".",
+  baseUrl: ".", 
   name: "../<%= bowerDirectory %>/almond/almond",
   include: "require_main",
   mainConfigFile: "require_main.js",

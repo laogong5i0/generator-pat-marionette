@@ -3,6 +3,7 @@ define ["js/app", "tpl!js/apps/sub_app/hello/templates/hello_view.tpl"], (App, h
 
     View.HelloView = Marionette.ItemView.extend(
       template: helloTpl
+      id: 'module-hello'
     )
 
   App.SubApp.View

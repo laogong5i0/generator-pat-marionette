@@ -86,7 +86,7 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('_app.css', 'app/assets/css/app.css');
       this.template('_require_main.coffee', 'app/assets/require_main.coffee', this.props);
 
-      this.copy('_build.js', 'app/assets/build.js');
+      this.template('_build.js', 'app/assets/build.js', this.props);
 
     },
     app: function () {
